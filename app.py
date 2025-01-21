@@ -9,11 +9,10 @@ st.header('Listado vehicular')
 st.write(cars_data)
 
 # agregar compañia automotriz
-if not cars_data['manufacturer'] in cars_data:
-    for i in range(len(cars_data)):
-        string1 = cars_data.loc[i]['model']
-        string2 = string1.split(' ')
-        cars_data.loc[i, ['manufacturer']] = string2[0]
+for i in range(len(cars_data)):
+    string1 = cars_data.loc[i]['model']
+    string2 = string1.split(' ')
+    cars_data.loc[i, ['manufacturer']] = string2[0]
 
 st.write('¿Deseas ver un histograma de las automotrices que hay disponibles?')
 # creación de botón
