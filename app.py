@@ -26,11 +26,9 @@ if hist_button:
 st.header('Aquí tienes algunas otras gráficas que podrían interesarte')
 pre_mod = st.checkbox("Precio x Año")
 pre_con = st.checkbox("Precio x Condición")
-pre_odo = st.checkbox("Precio de acuerdo a su Kilometraje")
-mod_tra = st.checkbox("Transmisión con los años")
+pre_odo = st.checkbox("Precio x Kilometraje")
 
 y1 = "price"
-y2 = "transmission"
 
 x1 = "model_year"
 x2 = "condition"
@@ -47,9 +45,6 @@ if pre_con:
     st.plotly_chart(fig, use_container_width=True)
 
 if pre_odo:
-    fig = px.bar(cars_data, x = x3, y = y1)
-    st.plotly_chart(fig, use_container_width=True)
-
-if mod_tra:
-    fig = px.bar(cars_data, x = x1, y = y2, color = y2, title = "Tipo de transmisión con el pasar de los años")
+    fig = px.scatter(cars_data, x = x3, y = y1)
+    st.write('Precio de acuerdo al kilometraje')
     st.plotly_chart(fig, use_container_width=True)
