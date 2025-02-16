@@ -5,21 +5,27 @@ import streamlit as st
 # lectura de datos
 cars_data = pd.read_csv('vehicles_us.csv')
 
-st.header('Listado vehicular')
-st.write(cars_data)
+st.header('Muestra del Listado vehicular')
+st.write(cars_data.head(10))
 
 # agregar compañia automotriz
-for i in range(len(cars_data)):
-    string1 = cars_data.loc[i]['model']
-    string2 = string1.split(' ')
-    cars_data.loc[i, ['manufacturer']] = string2[0]
+#for i in range(len(cars_data)):
+#    string1 = cars_data.loc[i]['model']
+#    string2 = string1.split(' ')
+#    cars_data.loc[i, ['manufacturer']] = string2[0]
+# Esta parte afecta el tiempo de carga de la pagina, vamos a hacer otra cosa para el histograma.
 
-st.write('¿Deseas ver un histograma de las automotrices que hay disponibles?')
+# Primer histograma
+st.header('El tipo de autos hay disponibles.')
+fig = px.histogram(cars_data, x="type")
+st.plotly_chart(fig, use_container_width=True)
+
+st.write('¿Deseas ver un histograma de los colores que hay disponibles?')
 # creación de botón
 hist_button = st.button('Si')
 
 if hist_button:
-    fig = px.histogram(cars_data, x="manufacturer")
+    fig = px.histogram(cars_data, x="paint_color")
     st.plotly_chart(fig, use_container_width=True)
 
 # listado de casillas de verificación
